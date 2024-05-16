@@ -31,6 +31,6 @@ app.get('/api/users', async (req, res) => {
     // 2. Validate that we've the query param
     // 3. Filter the data from the db or memory
     
-    // 4. Return 200 with the filtered data 
+    // 4. Return 200 with the filtered data
         return res.status(200).json({ data: [] })
 })
