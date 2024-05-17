@@ -67,7 +67,7 @@ app.get('/api/users', async (req, res) => {
     // 3. Filter the data from the db or memory
         const search = q.toString().toLowerCase()
         const filteredData = userData.filter(row => {
-            Object
+            return Object
                 .values(row)
                 .some(values => values.toLowerCase().includes(search))
         })
