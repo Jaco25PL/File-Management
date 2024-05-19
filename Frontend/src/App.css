@@ -1,0 +1,11 @@
+.main_container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 4rem;
+}
+
+h1{
+   margin-bottom: 2rem;  
+}
