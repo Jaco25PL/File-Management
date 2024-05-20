@@ -14,7 +14,12 @@ function App() {
       <h1>File Management</h1>
 
       <main>
-        <input onChange={handleInput} name='file' type="file" accept=".csv" />
+        <input 
+          onChange={handleInput} 
+          name='file' 
+          type="file" 
+          accept=".csv" 
+        />
       </main>
 
     </div>
