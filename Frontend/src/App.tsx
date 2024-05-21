@@ -1,10 +1,35 @@
+import { useState } from 'react'
 import './App.css'
+
+
+const APP_STATUS = {
+  IDLE: 'idle',
+  ERROR: 'error',
+  READY_UPLOAD: 'ready_upload',
+  UPLOADING: 'uploading',
+  READY_USAGE: 'ready_usage',
+} as const
+
+type AppStatusType = typeof APP_STATUS[ keyof typeof APP_STATUS] // Or repeat idle ... 1 by 1
+
 
 function App() {
 
+  const [ appStatus , setAppStatus ] = useState<AppStatusType>(APP_STATUS.IDLE)
+  const [ file , setFile ] = useState<File | null>(null)
+
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const [ file ] = e.target.files ?? []
-    console.log(file)
+
+    if (file) {
+      setFile(file)
+      setAppStatus(APP_STATUS.READY_UPLOAD)
+    }
+
+  }
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
   }
 
 
@@ -14,12 +39,15 @@ function App() {
       <h1>File Management</h1>
 
       <main>
-        <input 
-          onChange={handleInput} 
-          name='file' 
-          type="file" 
-          accept=".csv" 
-        />
+        <form onSubmit={handleSubmit}>
+          <input 
+            onChange={handleInput} 
+            name='file' // same key that we've in backend 
+            type="file" 
+            accept=".csv" 
+          />
+          <button type='submit'>Upload</button>
+        </form>
       </main>
 
     </div>
