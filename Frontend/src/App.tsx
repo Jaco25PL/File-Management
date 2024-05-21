@@ -42,11 +42,17 @@ function App() {
         <form onSubmit={handleSubmit}>
           <input 
             onChange={handleInput} 
+            disabled={appStatus === APP_STATUS.UPLOADING}
             name='file' // same key that we've in backend 
             type="file" 
             accept=".csv" 
           />
-          <button type='submit'>Upload</button>
+          {
+            appStatus === APP_STATUS.READY_UPLOAD && (
+              <button type='submit'>Upload</button>
+            )
+          }
+          
         </form>
       </main>
 
