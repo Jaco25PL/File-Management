@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import './App.css'
 
-
 const APP_STATUS = {
   IDLE: 'idle',
   ERROR: 'error',
@@ -30,6 +29,15 @@ function App() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+
+    if ( appStatus !== APP_STATUS.READY_UPLOAD || !file ) {
+      return
+    }
+
+    setAppStatus(APP_STATUS.UPLOADING)
+
+    // call await uploadFile(file)
+
   }
 
 
