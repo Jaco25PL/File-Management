@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import { uploadFite } from './services/upload'
 
 const APP_STATUS = {
   IDLE: 'idle',
@@ -37,7 +38,9 @@ function App() {
     setAppStatus(APP_STATUS.UPLOADING)
 
     // call await uploadFile(file)
-
+    const data = uploadFite(file)
+    console.log(data)
+    
   }
 
 
