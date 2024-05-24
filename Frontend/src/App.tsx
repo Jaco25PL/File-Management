@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import { uploadFile } from './services/upload'
+import { JSONFile } from './types'
 
 const APP_STATUS = {
   IDLE: 'idle',
@@ -17,6 +18,7 @@ function App() {
 
   const [ appStatus , setAppStatus ] = useState<AppStatusType>(APP_STATUS.IDLE)
   const [ file , setFile ] = useState<File | null>(null)
+  const [ jsonFile , setJsonFile ] = useState<JSONFile[]>([])
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const [ file ] = e.target.files ?? []
@@ -40,37 +42,62 @@ function App() {
     // call await uploadFile(file)
     try {
       const data = await uploadFile(file)
-      console.log({ data })
+
+      setJsonFile(data)
+
       setAppStatus(APP_STATUS.READY_USAGE)
     } catch (error) {
       console.error('Uploading failed', error)
       setAppStatus(APP_STATUS.READY_UPLOAD)
     }
-    
+
   }
 
+
+  // jsonFile && console.log(jsonFile)
+  
 
   return (
     <div className='main_container'>
 
       <h1>File Management</h1>
 
-      <main>
+      <header>
         <form onSubmit={handleSubmit}>
           <input 
+            className='file-input'
             onChange={handleInput} 
             disabled={appStatus === APP_STATUS.UPLOADING}
             name='file' // same key that we've in backend 
             type="file" 
-            accept=".csv" 
+            accept=".csv"
           />
           {
-            appStatus === APP_STATUS.READY_UPLOAD && (
-              <button type='submit'>Upload</button>
-            )
+            // appStatus === APP_STATUS.READY_UPLOAD && (
+              <button 
+              className='btn'
+              type='submit'
+              disabled={appStatus !== APP_STATUS.READY_UPLOAD}
+              >Upload</button>
+            // )
           }
           
         </form>
+      </header>
+
+      <main>
+
+          {
+            jsonFile?.map(record => (
+              <div key={record.UserID}>
+                <div className='name-container'>
+                  <span>{record.FirstName}</span>
+                  <span>{record.LastName}</span>
+                </div>
+              </div>
+            ))
+          }
+
       </main>
 
     </div>

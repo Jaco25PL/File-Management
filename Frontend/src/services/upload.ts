@@ -1,11 +1,6 @@
+import { ApiResponse, JSONFile } from '../types'
 
-type Data = Array<Record< string, string >>
-interface ApiResponse {
-    message: string
-    data: Data
-}
-
-export const uploadFile = async (file: File): Promise< Data > => {
+export const uploadFile = async (file: File): Promise< JSONFile[] > => {
 
     const formData = new FormData() // constructor
     formData.append('file', file)

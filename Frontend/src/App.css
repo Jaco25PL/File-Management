@@ -9,3 +9,27 @@
 h1{
    margin-bottom: 2rem;  
 }
+
+.btn{
+    padding: .5rem .6rem;
+    border-radius: .5rem;
+    border: none;
+    cursor: pointer;
+    -webkit-border-radius: .5rem;
+    -moz-border-radius: .5rem;
+    -ms-border-radius: .5rem;
+    -o-border-radius: .5rem;
+}
+
+.btn:hover{
+    outline: .1rem solid #e2e2e2;
+}
+
+button[disabled]{
+    pointer-events: none;
+}
+
+.name-container{
+    display: flex;
+    gap: 1rem;
+}
