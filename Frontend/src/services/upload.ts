@@ -5,16 +5,15 @@ interface ApiResponse {
     data: Data
 }
 
-export const uploadFite = async (file: File): Promise< Data > => {
+export const uploadFile = async (file: File): Promise< Data > => {
 
     const formData = new FormData() // constructor
     formData.append('file', file)
 
     try {
-        const res = await fetch('http://localhost:3000/api/file', {
+        const res = await fetch('http://localhost:3000/api/files', {
             method: 'POST',
             body: formData
-
         })
 
         if (!res.ok) {
@@ -28,5 +27,4 @@ export const uploadFite = async (file: File): Promise< Data > => {
         console.error(error)
         throw error
     }
-
 }

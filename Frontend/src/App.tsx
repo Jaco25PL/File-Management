@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import { uploadFite } from './services/upload'
+import { uploadFile } from './services/upload'
 
 const APP_STATUS = {
   IDLE: 'idle',
@@ -28,7 +28,7 @@ function App() {
 
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     if ( appStatus !== APP_STATUS.READY_UPLOAD || !file ) {
@@ -38,8 +38,14 @@ function App() {
     setAppStatus(APP_STATUS.UPLOADING)
 
     // call await uploadFile(file)
-    const data = uploadFite(file)
-    console.log(data)
+    try {
+      const data = await uploadFile(file)
+      console.log({ data })
+      setAppStatus(APP_STATUS.READY_USAGE)
+    } catch (error) {
+      console.error('Uploading failed', error)
+      setAppStatus(APP_STATUS.READY_UPLOAD)
+    }
     
   }
 

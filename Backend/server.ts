@@ -4,7 +4,7 @@ import multer from 'multer'
 import csvToJson from 'convert-csv-to-json'
 
 const app = express()
-// const port = process.env.PORT ?? 3000
+const port = process.env.PORT ?? 3000
 
 app.use(cors())
 
@@ -13,9 +13,9 @@ const upload = multer({ storage: storage })
 
 let userData: Array<Record<string , string>> = []
 
-// app.listen(port, () => {
-//     console.log(`Server is running at http://localhost:${port}`)
-// })
+app.listen(port, () => {
+    console.log(`Server is running at http://localhost:${port}`)
+})
 
 // Required endpoints -> (post & get)
 
