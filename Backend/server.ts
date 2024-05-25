@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import multer from 'multer'
+import multer from 'multer' // Middlewere to store files and easy access to them later
 import csvToJson from 'convert-csv-to-json'
 
 const app = express()
@@ -37,7 +37,7 @@ app.post('/api/files', upload.single('file'), async (req, res) => {
     // 4- Transform the file to string
         let json: Array<Record<string, string>>
         try {
-            const csv = Buffer.from( file.buffer ).toString('utf-8')
+            const csv = Buffer.from( file.buffer ).toString('utf-8') // from binary (buffer) to string
             console.log(csv)
 
             // 5- Transform the string to JSON

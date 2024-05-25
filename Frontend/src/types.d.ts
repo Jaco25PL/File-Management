@@ -6,11 +6,6 @@ export interface ApiResponse {
     // data: Data
 }
 
-// export interface Files {
-//     data:    Datum[];
-//     message: string;
-// }
-
 export interface JSONFile {
     UserID:      string;
     FirstName:   string;
