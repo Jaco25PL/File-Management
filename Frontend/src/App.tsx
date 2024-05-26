@@ -54,7 +54,7 @@ function App() {
   }
 
 
-  // jsonFile && console.log(jsonFile)
+  jsonFile && console.log(jsonFile)
   
 
   return (
@@ -93,6 +93,7 @@ function App() {
                 <div className='name-container'>
                   <span>{record.FirstName}</span>
                   <span>{record.LastName}</span>
+                  <span>{record.Email}</span>
                 </div>
               </div>
             ))
