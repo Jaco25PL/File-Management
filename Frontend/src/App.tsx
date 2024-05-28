@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import { uploadFile } from './services/upload'
 import { JSONFile } from './types'
+import { Search } from './components/Search'
 
 const APP_STATUS = {
   IDLE: 'idle',
@@ -43,7 +44,7 @@ function App() {
     try {
       const data = await uploadFile(file)
 
-      setJsonFile(data)
+      if (data) setJsonFile(data)
 
       setAppStatus(APP_STATUS.READY_USAGE)
     } catch (error) {
@@ -54,13 +55,15 @@ function App() {
   }
 
 
-  jsonFile && console.log(jsonFile)
+  // jsonFile && console.log(jsonFile)
   
 
   return (
     <div className='main_container'>
 
       <h1>File Management</h1>
+
+
 
       <header>
         <form onSubmit={handleSubmit}>
@@ -85,21 +88,12 @@ function App() {
         </form>
       </header>
 
-      <main>
-
-          {
-            jsonFile?.map(record => (
-              <div key={record.UserID}>
-                <div className='name-container'>
-                  <span>{record.FirstName}</span>
-                  <span>{record.LastName}</span>
-                  <span>{record.Email}</span>
-                </div>
-              </div>
-            ))
-          }
-
-      </main>
+      {
+        appStatus === APP_STATUS.READY_USAGE && (
+          <Search initialData={jsonFile} />
+        )
+      }
+    
 
     </div>
   )
@@ -108,3 +102,18 @@ function App() {
 export default App
 
 
+  // <main>
+
+      //     {
+      //       jsonFile?.map(record => (
+      //         <div key={record.UserID}>
+      //           <div className='name-container'>
+      //             <span>{record.FirstName}</span>
+      //             <span>{record.LastName}</span>
+      //             <span>{record.Email}</span>
+      //           </div>
+      //         </div>
+      //       ))
+      //     }
+
+      // </main>
