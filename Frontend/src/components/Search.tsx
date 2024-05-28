@@ -5,7 +5,13 @@ import { searchData } from "../services/search"
 export function Search ({ initialData }: {initialData: JSONFile[]}) {
 
     const [ data, setData ] = useState<JSONFile[]>(initialData)
-    const [ search , setSearch ] = useState('')
+    const [ search , setSearch ] = useState(() => {
+        const searchParams = new URLSearchParams(window.location.search) //get what is after the ? symbol
+        return searchParams.get('q') ?? '' // if there is a q paramter get it
+    })
+
+    //const searchParams = new URLSearchParams(window.location.search).get('q')
+    //create a new object to access to the search part (after ? symbol) of the URL and get the 'q' param
 
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearch(e.target.value)
