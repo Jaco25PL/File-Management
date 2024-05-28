@@ -6,6 +6,10 @@ export interface ApiResponse {
     // data: Data
 }
 
+export interface ApiSearchResponse {
+    data: JSONFile[]
+}
+
 export interface JSONFile {
     UserID:      string;
     FirstName:   string;
