@@ -1,10 +1,11 @@
 import { ApiSearchResponse , JSONFile } from '../types'
+import { API_HOST } from '../config'
 
 export const searchData = async (search: string): Promise< JSONFile[] > => {
 
 
     try {
-        const res = await fetch(`http://localhost:3000/api/users?q=${search}`, {
+        const res = await fetch(`${API_HOST}/api/users?q=${search}`, {
             method: 'GET'
         })
 

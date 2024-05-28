@@ -1,12 +1,14 @@
 import { ApiResponse, JSONFile } from '../types'
+import { API_HOST } from '../config'
 
 export const uploadFile = async (file: File): Promise< JSONFile[] > => {
 
     const formData = new FormData() // constructor
     formData.append('file', file)
 
+
     try {
-        const res = await fetch('http://localhost:3000/api/files', {
+        const res = await fetch(`${API_HOST}/api/files`, {
             method: 'POST',
             body: formData
         })
