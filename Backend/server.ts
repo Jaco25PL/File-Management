@@ -17,6 +17,9 @@ app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`)
 })
 
+
+
+
 // Required endpoints -> (post & get)
 
 app.post('/api/files', upload.single('file'), async (req, res) => {
